@@ -2,8 +2,8 @@ import copy
 
 from rest_framework import serializers
 
-from .auth_utils import decode_credentials
-from .serializers.common import UserSerializer
+from ..auth_utils import decode_credentials
+from .common import UserSerializer
 
 
 class CredentialsSerializer(serializers.Serializer):
