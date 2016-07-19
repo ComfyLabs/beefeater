@@ -1,15 +1,9 @@
 import copy
 
-from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from .auth_utils import decode_credentials
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = ('username', 'first_name', 'last_name', 'email',)
+from ..auth_utils import decode_credentials
+from .common import UserSerializer
 
 
 class CredentialsSerializer(serializers.Serializer):
