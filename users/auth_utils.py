@@ -12,7 +12,8 @@ def decode_credentials(value):
         username, password (tuple of str)
     """
     decoded = base64.b64decode(value).split(b':')
-
-    return map(
+    credentials = map(
         lambda x: x.decode('utf-8'), decoded
     )
+
+    return {'username': credentials[0], 'password': credentials[1]}

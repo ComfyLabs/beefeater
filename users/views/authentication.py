@@ -3,10 +3,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from ..serializers import UserAuthSerializer, UserSerializer
+from ..auth_utils import decode_credentials
 
 
 class UserAuthentication(APIView):
-
     def post(self, request, format=None):
         """
         This leverages the HTTP basic authentication middleware
@@ -21,7 +21,8 @@ class UserAuthentication(APIView):
         serializer = UserAuthSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        credentials = serializer.data['value']
+        encoded = serializer.data['value']
+        credentials = decode_credentials(encoded)
 
         user = auth.authenticate_credentials(
             credentials['username'], credentials['password']
