@@ -20,7 +20,7 @@ class TestUserAuthentication(APITestCase):
             'auth': 'basic',
             'value': encode_credentials(raw_data)
         }
-        url = reverse('authenticate')
+        url = reverse('accounts:authenticate')
 
         response = self.client.post(
             url, data, format='json'
@@ -41,7 +41,7 @@ class TestUserRegistration(APITestCase):
             'first_name': 'Po',
             'last_name': 'Panda',
         }
-        url = reverse('register')
+        url = reverse('accounts:register')
 
         response = self.client.post(
             url, data, format='json'
