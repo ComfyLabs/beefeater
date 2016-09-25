@@ -31,4 +31,7 @@ def encode_credentials(value):
     Returns:
         username, password (tuple of str)
     """
-    return base64.b64encode(value.encode('utf-8'))
+    # not sure what the best way to handle these bytearrays is exactly.
+    return base64.b64encode(
+        value.encode('utf-8')
+    ).decode('utf-8')
